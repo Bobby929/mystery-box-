@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="神秘盒子抽奖 - 随机抽取惊喜图片">
+    <title>神秘盒子抽奖</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div id="particles"></div>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 首页 -->
+        <div id="homePage" class="page active">
+            <h1 class="title">🎁 神秘盒子抽奖</h1>
+            <p class="subtitle">上传图片，开启神秘盒子，随机抽取惊喜！</p>
+
+            <!-- 神秘盒子 -->
+            <div class="box-container">
+                <div class="box" id="mysteryBox">
+                    <div class="box-face box-front"></div>
+                    <div class="box-face box-back"></div>
+                    <div class="box-face box-right"></div>
+                    <div class="box-face box-left"></div>
+                    <div class="box-face box-top"></div>
+                    <div class="box-face box-bottom"></div>
+                    <div class="box-shine"></div>
+                </div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="buttons">
+                <button class="btn btn-upload" id="uploadBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    上传图片
+                </button>
+                <button class="btn btn-start" id="startBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    开始抽奖
+                </button>
+            </div>
+
+            <!-- 图片统计 -->
+            <div class="stats">
+                <p>已上传 <span id="imageCount">0</span> 张图片</p>
+                <p>已抽取 <span id="drawnCount">0</span> 张</p>
+                <p>剩余 <span id="remainingCount">0</span> 张</p>
+            </div>
+        </div>
+
+        <!-- 上传页面 -->
+        <div id="uploadPage" class="page">
+            <div class="page-header">
+                <button class="btn btn-back" id="backBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    返回
+                </button>
+                <h2>上传图片</h2>
+            </div>
+
+            <div class="upload-area">
+                <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                <div class="upload-box" id="uploadBox">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p>点击或拖拽图片到此处上传</p>
+                    <p class="upload-hint">支持 JPG、PNG、GIF 格式</p>
+                </div>
+            </div>
+
+            <div class="image-list">
+                <h3>已上传的图片</h3>
+                <div id="imageGrid" class="image-grid"></div>
+            </div>
+
+            <div class="upload-actions">
+                <button class="btn btn-clear" id="clearAllBtn">清空所有图片</button>
+                <button class="btn btn-complete" id="completeUploadBtn">完成</button>
+            </div>
+        </div>
+
+        <!-- 抽奖页面 -->
+        <div id="drawPage" class="page">
+            <div class="draw-container">
+                <!-- 盒子动画 -->
+                <div class="box-animation">
+                    <div class="box-large" id="boxLarge">
+                        <div class="box-face box-front"></div>
+                        <div class="box-face box-back"></div>
+                        <div class="box-face box-right"></div>
+                        <div class="box-face box-left"></div>
+                        <div class="box-face box-top"></div>
+                        <div class="box-face box-bottom"></div>
+                        <div class="box-shine"></div>
+                    </div>
+                </div>
+
+                <!-- 图片展示 -->
+                <div class="prize-display" id="prizeDisplay">
+                    <div class="prize-image-container">
+                        <img id="prizeImage" src="" alt="中奖图片">
+                        <div class="prize-frame"></div>
+                    </div>
+                    <div class="prize-info">
+                        <h3>恭喜你！</h3>
+                        <p>你抽中了这张图片！</p>
+                        <p id="prizeNumber"></p>
+                    </div>
+                    <button class="btn btn-close" id="closePrizeBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                        关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 提示信息 -->
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
